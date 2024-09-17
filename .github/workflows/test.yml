@@ -1,0 +1,65 @@
+name: test self hosted gh runner
+run-name: Run test workflow on ${{ inputs.arc_name }}
+
+on:
+  # push:
+  #   branches:
+  #     - main
+  workflow_dispatch:
+    inputs:
+      arc_name:
+        description: 'Target ARC name used for `runs-on` in job'
+        default: ubuntu-latest
+
+jobs:
+  test-connection-1:
+    runs-on:
+      - ${{ inputs.arc_name }}
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v3
+
+      - name: checking hostname
+        run: |
+          hostname -I
+
+      - name: test
+        run: echo "This is a test message from runner 1"
+
+      - name: check hostname
+        run: hostname -I && hostname
+
+  test-connection-2:
+    runs-on:
+      - ${{ inputs.arc_name }}
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v3
+
+      - name: checking hostname
+        run: |
+          hostname -I
+
+      - name: test
+        run: echo "This is a test message from runner 2"
+
+      - name: check hostname
+        run: hostname -I && hostname
+        
+  dind-check:
+    runs-on:
+      - ${{ inputs.arc_name }}
+    container: busybox
+    steps:
+      - name: Trials
+        run: |
+          echo "Hello World" >> $GITHUB_STEP_SUMMARY
+          sleep 360
+        env:
+          REDIS_HOST: redis
+          REDIS_PORT: 6379
+    services:
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
