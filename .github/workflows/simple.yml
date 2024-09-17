@@ -19,5 +19,5 @@ jobs:
     steps:
       - name: simple
         run: |
-          echo "Hello from: "${{ matrix.version }}
+          echo "Hello from: ${{ matrix.version }}"
           sleep ${{ inputs.delay }}
