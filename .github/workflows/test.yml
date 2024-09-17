@@ -17,7 +17,7 @@ jobs:
       - ${{ inputs.arc_name }}
     steps:
       - name: git checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: checking hostname
         run: |
@@ -34,7 +34,7 @@ jobs:
       - ${{ inputs.arc_name }}
     steps:
       - name: git checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: checking hostname
         run: |
