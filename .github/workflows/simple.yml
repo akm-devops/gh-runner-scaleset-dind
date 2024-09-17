@@ -1,0 +1,23 @@
+name: Short Sleepy Matrix
+run-name: Run short sleepy matrix on {{ inputs.arc_name }}
+on:
+  workflow_dispatch:
+    inputs:
+      arc_name:
+        description: 'Target ARC name used for `run-on` in job'
+        default: ubuntu-latest
+      delay:
+        description: "How long to sleep in seconds"
+        default: "20"
+jobs:
+  run-matrix:
+    strategy:
+      fail-fast: false
+      matrix:
+        job: [1,2,3]
+    runs-on: ${{ inputs.arc_name }}
+    steps:
+      - name: simple
+        run: |
+          echo "Hello from: "${{ matrix.version }}
+          sleep ${{ inputs.delay }}
