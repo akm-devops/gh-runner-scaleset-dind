@@ -12,39 +12,39 @@ on:
         default: ubuntu-latest
 
 jobs:
-  test-connection-1:
-    runs-on:
-      - ${{ inputs.arc_name }}
-    steps:
-      - name: git checkout
-        uses: actions/checkout@v4
+  # test-connection-1:
+  #   runs-on:
+  #     - ${{ inputs.arc_name }}
+  #   steps:
+  #     - name: git checkout
+  #       uses: actions/checkout@v4
 
-      - name: checking hostname
-        run: |
-          hostname -I
+  #     - name: checking hostname
+  #       run: |
+  #         hostname -I
 
-      - name: test
-        run: echo "This is a test message from runner 1"
+  #     - name: test
+  #       run: echo "This is a test message from runner 1"
 
-      - name: check hostname
-        run: hostname -I && hostname
+  #     - name: check hostname
+  #       run: hostname -I && hostname
 
-  test-connection-2:
-    runs-on:
-      - ${{ inputs.arc_name }}
-    steps:
-      - name: git checkout
-        uses: actions/checkout@v4
+  # test-connection-2:
+  #   runs-on:
+  #     - ${{ inputs.arc_name }}
+  #   steps:
+  #     - name: git checkout
+  #       uses: actions/checkout@v4
 
-      - name: checking hostname
-        run: |
-          hostname -I
+  #     - name: checking hostname
+  #       run: |
+  #         hostname -I
 
-      - name: test
-        run: echo "This is a test message from runner 2"
+  #     - name: test
+  #       run: echo "This is a test message from runner 2"
 
-      - name: check hostname
-        run: hostname -I && hostname
+  #     - name: check hostname
+  #       run: hostname -I && hostname
         
   dind-check:
     runs-on:
