@@ -1,16 +1,15 @@
 name: Docker Build
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      arc_name:
+        description: 'Target ARC name used for `run-on` in job'
+        default: ubuntu-latest
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.arc_name }}
 
     steps:
       - name: Checkout code
